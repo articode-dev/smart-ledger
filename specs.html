@@ -20,36 +20,35 @@
         body {
             font-family: 'Inter', sans-serif;
             background: var(--light-gray);
-            display: flex;
-            justify-content: center;
         }
 
         .page {
             width: 210mm;
-            height: 297mm;
+            min-height: 250mm; /* Let it flow naturally, no forced height */
             background: var(--white);
             margin: 10mm auto;
-            padding: 12mm 14mm 10mm;
+            padding: 15mm 20mm;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            display: block; /* Remove flex column */
         }
 
         @media print {
             body { background: transparent; }
-            .page { margin: 0; box-shadow: none; }
+            .page { margin: 0; box-shadow: none; padding: 10mm 15mm; }
         }
 
         /* ── HEADER ── */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            width: 100%;
             border-bottom: 2.5pt solid var(--black);
             padding-bottom: 5mm;
-            margin-bottom: 6mm;
+            margin-bottom: 8mm;
         }
+
+        /* Float header items to prevent flex collision */
+        .header-left { float: left; width: 60%; }
+        .header-right { float: right; width: 40%; text-align: right; }
+        .clearfix::after { content: ""; display: table; clear: both; }
 
         .header-left h1 {
             font-size: 22pt;
@@ -62,24 +61,21 @@
         .header-left .subtitle {
             font-size: 8.5pt;
             color: var(--gray);
-            margin-top: 2px;
+            margin-top: 4px;
             letter-spacing: 0.3px;
         }
 
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 2px;
-        }
-
         .logo-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
             font-size: 13pt;
             font-weight: 800;
             letter-spacing: 2px;
+            margin-bottom: 2px;
+        }
+        
+        .logo-row svg {
+            vertical-align: middle;
+            margin-right: 4px;
+            margin-bottom: 3px;
         }
 
         .logo-by {
@@ -88,16 +84,24 @@
             color: var(--gray);
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            display: block;
         }
 
-        /* ── TWO COLUMN BODY ── */
-        .body {
-            display: flex;
-            gap: 10mm;
+        /* ── TWO COLUMN BODY (BULLETPROOF FLOATS) ── */
+        .body-wrapper {
+            width: 100%;
             margin-bottom: 8mm;
         }
 
-        .col { flex: 1; display: flex; flex-direction: column; }
+        .col-left {
+            float: left;
+            width: 47%;
+        }
+
+        .col-right {
+            float: right;
+            width: 47%;
+        }
 
         /* Section headings */
         .section-title {
@@ -109,10 +113,10 @@
             color: var(--white);
             padding: 2mm 4mm;
             margin-bottom: 4mm;
-            display: block;
+            display: inline-block; /* Replaces block to prevent spanning */
         }
 
-        .block { margin-bottom: 5mm; }
+        .block { margin-bottom: 6mm; }
 
         .block-title {
             font-size: 7.5pt;
@@ -128,9 +132,9 @@
         ul.items li {
             font-size: 7.5pt;
             line-height: 1.5;
-            padding-left: 5mm;
+            padding-left: 4mm;
             position: relative;
-            color: #333;
+            color: #222;
         }
         ul.items li::before {
             content: "▪";
@@ -142,24 +146,26 @@
         .overview-text {
             font-size: 7.5pt;
             line-height: 1.6;
-            color: #333;
+            color: #222;
             text-align: justify;
         }
 
         /* ── TECH TABLE ── */
-        .tech-section { margin-top: 5mm; }
+        .tech-section { width: 100%; margin-top: 5mm; margin-bottom: 10mm; }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            table-layout: fixed; /* Stop flex stretching */
         }
 
         table th, table td {
             border: 0.75pt solid var(--black);
-            padding: 2mm 3mm;
+            padding: 3mm;
             font-size: 7.5pt;
             text-align: left;
             vertical-align: top;
+            color: #222;
         }
 
         table th {
@@ -168,36 +174,35 @@
             font-weight: 700;
             text-transform: uppercase;
             width: 30%;
-            white-space: nowrap;
         }
 
         /* ── FOOTER ── */
         .footer {
+            width: 100%;
             border-top: 1.5pt solid var(--black);
-            padding-top: 4mm;
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding-top: 5mm;
         }
 
         .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            float: left;
             font-size: 8pt;
             font-weight: 800;
             letter-spacing: 1.5px;
         }
+        
+        .footer-logo svg {
+            vertical-align: middle;
+            margin-right: 4px;
+            margin-bottom: 2px;
+        }
 
-        .footer-meta span {
+        .footer-meta {
+            float: right;
             font-size: 7.5pt;
             font-weight: 600;
             color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 0.3px;
-            margin-left: 6mm;
-            display: inline-block;
         }
     </style>
 </head>
@@ -205,14 +210,14 @@
 <div class="page">
 
     <!-- HEADER -->
-    <div class="header">
+    <div class="header clearfix">
         <div class="header-left">
             <h1>Smart Ledger V1.0</h1>
             <div class="subtitle">Product &amp; Technical Specification Document</div>
         </div>
         <div class="header-right">
             <div class="logo-row">
-                <svg width="24" height="24" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50 0 L0 100 L30 100 L50 60 L70 100 L100 100 Z" fill="#000"/>
                     <polygon points="50,25 35,54 65,54" fill="#fff"/>
                 </svg>
@@ -223,10 +228,10 @@
     </div>
 
     <!-- BODY -->
-    <div class="body">
+    <div class="body-wrapper clearfix">
 
         <!-- LEFT COLUMN -->
-        <div class="col">
+        <div class="col-left">
             <span class="section-title">Product Overview</span>
             <div class="block">
                 <p class="overview-text">
@@ -259,7 +264,7 @@
         </div>
 
         <!-- RIGHT COLUMN -->
-        <div class="col">
+        <div class="col-right">
             <span class="section-title">Data &amp; Capabilities</span>
 
             <div class="block">
@@ -275,7 +280,7 @@
             <div class="block">
                 <div class="block-title">Export &amp; Sharing</div>
                 <ul class="items">
-                    <li>WhatsApp share: auto-formatted text summary per contact</li>
+                    <li>WhatsApp share: auto-formatted summary per contact</li>
                     <li>Individual contact ledger export to CSV</li>
                     <li>Full global data export to CSV</li>
                     <li>Direct call button via device dialer</li>
@@ -322,18 +327,18 @@
     </div>
 
     <!-- FOOTER -->
-    <div class="footer">
+    <div class="footer clearfix">
         <div class="footer-logo">
-            <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg width="12" height="12" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <path d="M50 0 L0 100 L30 100 L50 60 L70 100 L100 100 Z" fill="#000"/>
                 <polygon points="50,25 35,54 65,54" fill="#fff"/>
             </svg>
             ARTICODE
         </div>
         <div class="footer-meta">
-            <span>Smart Ledger V1.0</span>
-            <span>Prepared: March 2026</span>
-            <span>Status: Production Ready</span>
+            Smart Ledger V1.0 &nbsp;&nbsp;|&nbsp;&nbsp;
+            Prepared: March 2026 &nbsp;&nbsp;|&nbsp;&nbsp;
+            Status: Production Ready
         </div>
     </div>
 
