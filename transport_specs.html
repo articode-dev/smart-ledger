@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articode Transport Management — App Specifications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #555555;
+            --light-gray: #eeeeee;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        @page { size: A4 portrait; margin: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-gray);
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 250mm;
+            background: var(--white);
+            margin: 10mm auto;
+            padding: 15mm 20mm;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: block;
+        }
+
+        @media print {
+            body { background: transparent; }
+            .page { margin: 0; box-shadow: none; padding: 10mm 15mm; }
+        }
+
+        /* ── HEADER ── */
+        .header {
+            width: 100%;
+            border-bottom: 2.5pt solid var(--black);
+            padding-bottom: 5mm;
+            margin-bottom: 8mm;
+        }
+
+        .header-left { float: left; width: 65%; }
+        .header-right { float: right; width: 35%; text-align: right; }
+        .clearfix::after { content: ""; display: table; clear: both; }
+
+        .header-left h1 {
+            font-size: 18pt;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .header-left .subtitle {
+            font-size: 8.5pt;
+            color: var(--gray);
+            margin-top: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .logo-row {
+            font-size: 13pt;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+        }
+        
+        .logo-row svg {
+            vertical-align: middle;
+            margin-right: 4px;
+            margin-bottom: 3px;
+        }
+
+        .logo-by {
+            font-size: 7.5pt;
+            font-weight: 600;
+            color: var(--gray);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        /* ── TWO COLUMN BODY (BULLETPROOF FLOATS) ── */
+        .body-wrapper {
+            width: 100%;
+            margin-bottom: 8mm;
+        }
+
+        .col-left {
+            float: left;
+            width: 47%;
+        }
+
+        .col-right {
+            float: right;
+            width: 47%;
+        }
+
+        .block { margin-bottom: 6mm; }
+
+        .block-title {
+            font-size: 8pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--black);
+            color: var(--white);
+            padding: 1.5mm 3mm;
+            margin-bottom: 2mm;
+            display: inline-block;
+        }
+
+        ul.items { list-style: none; margin-top: 1mm; }
+        ul.items li {
+            font-size: 7.5pt;
+            line-height: 1.5;
+            padding-left: 4mm;
+            position: relative;
+            color: #222;
+            margin-bottom: 1mm;
+        }
+        ul.items li::before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            font-size: 7pt;
+        }
+
+        .overview-text {
+            font-size: 8pt;
+            line-height: 1.5;
+            color: #222;
+            text-align: justify;
+            margin-bottom: 6mm;
+            padding: 3mm;
+            border-left: 2pt solid var(--black);
+            background: #f9f9f9;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            width: 100%;
+            border-top: 1.5pt solid var(--black);
+            padding-top: 5mm;
+            margin-top: 5mm;
+        }
+
+        .footer-logo {
+            float: left;
+            font-size: 8pt;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+        
+        .footer-logo svg {
+            vertical-align: middle;
+            margin-right: 4px;
+            margin-bottom: 2px;
+        }
+
+        .footer-meta {
+            float: right;
+            font-size: 7.5pt;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- HEADER -->
+    <div class="header clearfix">
+        <div class="header-left">
+            <h1>Articode Transport Management</h1>
+            <div class="subtitle">Complete Logistics & Fleet Management System</div>
+        </div>
+        <div class="header-right">
+            <div class="logo-row">
+                <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 0 L0 100 L30 100 L50 60 L70 100 L100 100 Z" fill="#000"/>
+                    <polygon points="50,25 35,54 65,54" fill="#fff"/>
+                </svg>
+                ARTICODE
+            </div>
+            <span class="logo-by">By Ahmad Sohail</span>
+        </div>
+    </div>
+
+    <!-- PRODUCT OVERVIEW -->
+    <p class="overview-text">
+        An enterprise-grade logistics and fleet management architecture engineered to securely manage vehicles, drivers, expansive triplogs, automated bookings, and end-to-end financial tracking.
+    </p>
+
+    <!-- BODY -->
+    <div class="body-wrapper clearfix">
+
+        <!-- LEFT COLUMN -->
+        <div class="col-left">
+
+            <div class="block">
+                <div class="block-title">Core Modules</div>
+                <ul class="items">
+                    <li>Fleet Management Dashboard</li>
+                    <li>Driver & HR Portal</li>
+                    <li>Trip & Routing Engine</li>
+                    <li>Customer Booking Gateway</li>
+                    <li>Billing & Invoicing Ledger</li>
+                    <li>Live GPS Interface</li>
+                    <li>Advanced Reporting & Analytics</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">Fleet Logistics</div>
+                <ul class="items">
+                    <li>Comprehensive vehicle registration records</li>
+                    <li>Automated fuel tracking and efficiency mapping</li>
+                    <li>Scheduled maintenance and repair logs</li>
+                    <li>Document tracking with insurance and tax expiration alerts</li>
+                    <li>Real-time vehicle status and availability tracking</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">Driver Operations</div>
+                <ul class="items">
+                    <li>Detailed personnel profiles and history</li>
+                    <li>License validity and certification tracking</li>
+                    <li>Biometric-ready attendance systems</li>
+                    <li>Salary, commission, and advance management</li>
+                    <li>Incident and performance tracking metrics</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">Trip Execution</div>
+                <ul class="items">
+                    <li>Digital trip creation and generation</li>
+                    <li>Intelligent vehicle and driver assignment</li>
+                    <li>Dynamic route planning algorithms</li>
+                    <li>Real-time trip status tracking</li>
+                    <li>Toll, fuel, and miscellaneous expense logging</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">Booking Engine</div>
+                <ul class="items">
+                    <li>B2B/B2C Customer booking portal</li>
+                    <li>Detailed cargo and load specifications</li>
+                    <li>Algorithmic auto-pricing based on dimension/distance</li>
+                    <li>Historic booking lookup and trend analysis</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-right">
+
+            <div class="block">
+                <div class="block-title">Billing & Financials</div>
+                <ul class="items">
+                    <li>Automated invoice generation post-trip</li>
+                    <li>Multi-currency payment gateways and logging</li>
+                    <li>Outstanding dues and credit tracking</li>
+                    <li>Daily/Weekly/Monthly financial reconciliations</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">GPS & Telematics</div>
+                <ul class="items">
+                    <li>Live map interface for active fleet tracking</li>
+                    <li>Historic route playback and deviation analysis</li>
+                    <li>Customizable geofencing and breach alerts</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">Analytics Engine</div>
+                <ul class="items">
+                    <li>Gross revenue and net profit algorithms</li>
+                    <li>Granular expense reports by vehicle/trip</li>
+                    <li>Driver efficiency and ROI performance</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">System Administration</div>
+                <ul class="items">
+                    <li>Role-based access control (RBAC)</li>
+                    <li>Global system parameter and tax settings</li>
+                    <li>Secure data management and backup protocols</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">Technology Infrastructure</div>
+                <ul class="items">
+                    <li><strong>Frontend:</strong> React.js (Web) / Flutter (Mobile)</li>
+                    <li><strong>Backend:</strong> Node.js / Python Django</li>
+                    <li><strong>Database:</strong> Relational MySQL Architecture</li>
+                    <li><strong>Cloud:</strong> AWS / Microsoft Azure Ecosystem</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <div class="block-title">Enterprise Security</div>
+                <ul class="items">
+                    <li>Multi-factor authentication (MFA)</li>
+                    <li>JWT session-based access control</li>
+                    <li>End-to-End data encryption standards</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer clearfix">
+        <div class="footer-logo">
+            <svg width="12" height="12" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 0 L0 100 L30 100 L50 60 L70 100 L100 100 Z" fill="#000"/>
+                <polygon points="50,25 35,54 65,54" fill="#fff"/>
+            </svg>
+            ARTICODE
+        </div>
+        <div class="footer-meta">
+            Transport Management V1.0 &nbsp;&nbsp;|&nbsp;&nbsp;
+            Articode Software Solutions &copy; 2026
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
