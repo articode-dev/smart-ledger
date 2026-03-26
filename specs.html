@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Ledger — App Specifications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #666666;
+            --light-gray: #eeeeee;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* A4 Page Formatting */
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-gray);
+            color: var(--black);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The A4 Container */
+        .page {
+            width: 210mm;
+            min-height: 297mm; /* Ensure it stretches but tries to fit within A4 */
+            background: var(--white);
+            margin: 10mm auto;
+            padding: 15mm 20mm;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body { background: transparent; }
+            .page { margin: 0; box-shadow: none; min-height: 297mm; height: 297mm; padding: 15mm 20mm; overflow: hidden; }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 32pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 2mm;
+            border-bottom: 3pt solid var(--black);
+            padding-bottom: 4mm;
+        }
+
+        .subtitle {
+            font-size: 14pt;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 12mm;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            font-size: 18pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 6mm;
+            background: var(--black);
+            color: var(--white);
+            display: inline-block;
+            padding: 2mm 5mm;
+        }
+
+        /* Two Column Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10mm;
+            flex: 1;
+        }
+
+        /* Feature Blocks */
+        .block {
+            margin-bottom: 8mm;
+        }
+
+        .block-title {
+            font-size: 12pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 2mm;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 1mm;
+        }
+
+        .block-list {
+            list-style: none;
+        }
+
+        .block-list li {
+            font-size: 10pt;
+            line-height: 1.5;
+            margin-bottom: 2mm;
+            position: relative;
+            padding-left: 4mm;
+            color: #333;
+        }
+
+        .block-list li::before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 8pt;
+            color: var(--black);
+        }
+
+        /* Specifications Table */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8mm;
+            margin-bottom: 10mm;
+        }
+
+        .specs-table th, .specs-table td {
+            border: 1px solid var(--black);
+            padding: 3mm 4mm;
+            text-align: left;
+            font-size: 10pt;
+        }
+
+        .specs-table th {
+            background: var(--black);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            width: 30%;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            border-top: 1px solid var(--gray);
+            padding-top: 4mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <header>
+            <h1>Smart Ledger V1.0</h1>
+            <div class="subtitle">Product & Technical Specification Document</div>
+        </header>
+
+        <!-- Core Grid -->
+        <div class="grid">
+            <!-- Left Column -->
+            <div class="col">
+                <h2>Product Overview</h2>
+                <div class="block">
+                    <p style="font-size: 10pt; line-height: 1.6; margin-bottom: 4mm; text-align: justify;">
+                        Smart Ledger is a fast, lightweight, and offline-first digital ledger application designed for both personal and business use. It replaces traditional paper khata books, allowing users to track receivables, manage customer profiles, and record transactions with absolute mathematical precision entirely on-device.
+                    </p>
+                </div>
+
+                <h2>Core Features</h2>
+                <div class="block">
+                    <div class="block-title">Authentication & Setup</div>
+                    <ul class="block-list">
+                        <li>OTP-based phone number authentication</li>
+                        <li>Support for 25+ international country codes</li>
+                        <li>Personalized workspace setup (Name & Business)</li>
+                        <li>Dynamic selection spanning 22 global currencies</li>
+                    </ul>
+                </div>
+
+                <div class="block">
+                    <div class="block-title">Ledger & Transactions</div>
+                    <ul class="block-list">
+                        <li>Dual-entry tracking: Credit (Owed) vs. Payment (Paid)</li>
+                        <li>Running balance calculated precisely from historical data</li>
+                        <li>Quick-entry chips for rapid transaction noting</li>
+                        <li>Distinct visual indicators (Red vs. Green) for balances</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col">
+                <h2>Data & Capabilities</h2>
+                <div class="block">
+                    <div class="block-title">Management Dashboard</div>
+                    <ul class="block-list">
+                        <li>Real-time aggregation of Total Receivables</li>
+                        <li>Dynamic search filter by Name or Phone Number</li>
+                        <li>Sorting capabilities (Balance, Name, Recency)</li>
+                        <li>At-a-glance status chips for fast reading</li>
+                    </ul>
+                </div>
+
+                <div class="block">
+                    <div class="block-title">Export & Portability</div>
+                    <ul class="block-list">
+                        <li>One-click automated WhatsApp message structuring</li>
+                        <li>Text-based transaction summary generation</li>
+                        <li>CSV Export of targeted individual ledgers</li>
+                        <li>CSV Export of comprehensive global app data</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Specs Table -->
+        <h2>Technical Architecture</h2>
+        <table class="specs-table">
+            <tr>
+                <th>Architecture Layer</th>
+                <td>Single Page Application (SPA) / Progressive Web App (PWA)</td>
+            </tr>
+            <tr>
+                <th>View Engine</th>
+                <td>Vanilla JavaScript (Hash-based routing system with animations)</td>
+            </tr>
+            <tr>
+                <th>Styling Matrix</th>
+                <td>Mobile-first CSS Variables, Flexbox/Grid, Zero-dependency</td>
+            </tr>
+            <tr>
+                <th>Storage Paradigm</th>
+                <td>Fully Offline-First (localStorage with asynchronous DB wrapper)</td>
+            </tr>
+            <tr>
+                <th>Network Dependency</th>
+                <td>None (Service Worker intercepts and serves all cached assets)</td>
+            </tr>
+             <tr>
+                <th>Scalability Hooks</th>
+                <td>Segmented DB and Auth modules built for seamless backend/API swapping</td>
+            </tr>
+        </table>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>Prepared: March 2026</span>
+            <span>Target Platform: Web & PWA</span>
+            <span>Status: Production Ready</span>
+        </footer>
+    </div>
+</body>
+</html>
