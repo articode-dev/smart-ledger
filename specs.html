@@ -160,12 +160,27 @@
             top: 2mm;
             right: 0;
             display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .header-logo-top {
+            display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14pt;
             font-weight: 800;
             letter-spacing: 2px;
             color: var(--black);
+        }
+
+        .header-logo-sub {
+            font-size: 8pt;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--gray);
+            text-transform: uppercase;
         }
 
         .footer-logo {
@@ -198,12 +213,15 @@
         <!-- Header -->
         <header>
             <div class="header-logo">
-                <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Articode stylized A-logo (solid B&W print friendly) -->
-                    <path d="M50 0 L0 100 L30 100 L50 60 L70 100 L100 100 Z" fill="var(--black)"/>
-                    <polygon points="50,25 35,55 65,55" fill="#fff"/>
-                </svg>
-                <span>ARTICODE</span>
+                <div class="header-logo-top">
+                    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Articode stylized A-logo (solid B&W print friendly) -->
+                        <path d="M50 0 L0 100 L30 100 L50 60 L70 100 L100 100 Z" fill="var(--black)"/>
+                        <polygon points="50,25 35,55 65,55" fill="#fff"/>
+                    </svg>
+                    <span>ARTICODE</span>
+                </div>
+                <span class="header-logo-sub">By Ahmad Sohail</span>
             </div>
             <h1>Smart Ledger V1.0</h1>
             <div class="subtitle">Product & Technical Specification Document</div>
